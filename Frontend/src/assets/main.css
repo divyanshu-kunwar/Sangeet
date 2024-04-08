@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+  --primary:#1462e8;
+  --shade:#398aee;
+  --gradient: linear-gradient(125deg, #105BDB 4.94%, #50FEFE 92.59%);
+  --success:#54C130;
+  --error:#FF422E;
+  --back-0:#050505;
+  --back-1:#111111;
+  --back-2:#252525;
+  --fore-0:#AAAAAA;
+  --fore-1:#DDDDDD;
+  --fore-2:#FFFFFF;
+  --pointer: './cursor.svg';
+}
+*{
+  box-sizing: border-box; 
+}
+
+body{
+  width: 100%;
+  margin: 0;
+  background-color: var(--back-0);
+  color: var(--fore-0);
+  display: flex;
+  height: 100vh;
+  cursor: url('./cursor.svg'), auto;
+  font-family: 'Poppins' , sans-serif;
+}
+a , .btn{
+  cursor: url('./pointer.svg'), auto;
+  text-decoration: none;
+}
+
+#app{
+  width: 100%;
+}
+
+.cursor:hover{
+  cursor: url('./pointer.svg'), auto;
+}
+
+.arrow:hover{
+  cursor: url('./cursor.svg'), auto;
+}

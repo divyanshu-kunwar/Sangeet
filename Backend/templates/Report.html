@@ -1,0 +1,253 @@
+<html>
+  <head>
+    <style>
+      @font-face {
+        font-family: "Kalam";
+        src: url(../static/font/Kalam-Regular.ttf);
+      }
+      @font-face {
+        font-family: "Raleway";
+        src: url(../static/font/Raleway-VariableFont_wght.ttf);
+      }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      @media print {
+        html,
+        body {
+          margin: 0;
+        }
+      }
+      .page-break {
+        page-break-before: always;
+        page-break-after: always;
+      }
+      .no-page-break-inside {
+        page-break-inside: avoid;
+      }
+      #firstpage , #lastpage {
+        background: linear-gradient(287deg, #76cd7c 0%, #bbed8f 100%);
+        text-align: center;
+        font-family: "Raleway";
+        color: #333333;
+        height: 297mm;
+      }
+      #report_title {
+        margin-top: 15mm;
+        font-size: 10mm;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      #report_month{
+        margin-top: 10mm;
+        font-size: 30mm;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      #report_year {
+        font-size: 48mm;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      #report_last {
+        font-size: 35mm;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      #report_last2 {
+        padding-top: 15mm;
+        font-size: 18mm;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      #cover_img {
+        margin-top: -40.5mm;
+        width: 168mm;
+        height: auto;
+      }
+      #cover_img2 {
+        margin-top: -20mm;
+        width: 162mm;
+        height: auto;
+      }
+      #cover_logo{
+        margin-top: 15mm;
+        width: 60mm;
+        height: 24mm;
+        object-fit: contain;
+      }
+      #report_bottom {
+        font-size: 12mm;
+        font-weight: bold;
+      }
+      #report_bottom2{
+        font-size: 8mm;
+        font-weight: bold;
+        padding-top: 15mm;
+        text-align: center;
+      }
+      .pages {
+        box-sizing: border-box;
+        padding: 1cm;
+      }
+      .page_title {
+        font-family: "Raleway";
+        text-align: right;
+        font-size: 12mm;
+        width: 80%;
+        margin-left: auto;
+        margin-right: 20mm;
+        margin-top: 30mm;
+        padding-top: 4mm;
+        border-top: 1mm double #333333;
+      }
+      .page_sub_title {
+        font-family: "Raleway";
+        font-size: 6mm;
+        width: 80%;
+        margin-left: 20mm;
+        margin-top: 15mm;
+      }
+      #table_cont {
+        margin-top: 30mm;
+        margin-left: 20mm;
+      }
+      #table_cont a {
+        display: block;
+      }
+      #table_cont .li {
+        font-family: sans-serif;
+        font-size: 5mm;
+        text-decoration: none;
+        color: #000000;
+        margin-top: 4mm;
+      }
+      #table_cont .subli {
+        font-family: sans-serif;
+        font-size: 4mm;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333333;
+        margin-left: 5mm;
+        margin-top: 2mm;
+      }
+      #msg {
+        font-family: kalam;
+      }
+      .para {
+         font-size: 4mm;
+         margin-top: 10mm;
+         margin-left: 20mm;
+         margin-right: 20mm;
+         text-align: justify;
+         color: #333333;
+      }
+      .para i, .para b {
+         color: #002569;
+        font-style: normal;
+        font-size: 4.5mm;
+      }
+      #cinema_pic{
+         margin-top: 10mm;
+         margin-bottom: 10mm;
+         margin-left: 20mm;
+         margin-right: auto;
+         display: block;
+         width: 145mm;
+         height: 80mm;
+         object-fit: cover;
+         border-radius: 2px;
+      }
+      #cinema_table{
+         font-size: 5mm;
+      }
+      #cinema_table td{
+         padding: 2mm;
+      }
+
+      .chart1{
+         margin-top: 10mm;
+         margin-right: 20mm;
+         margin-left: 20mm;
+      }
+
+      .chart1 img{
+         width: 140mm;
+         height: auto;
+         border-radius: 4px;
+         padding: 4mm;
+      }
+
+      .chart2{
+         margin-top: 10mm;
+         margin-right: 10mm;
+         margin-left: 10mm;
+         grid-template-columns: 70mm 70mm;
+         display: grid;
+      }
+      .chart2 img{
+         width: 70mm;
+         border-radius: 4px;
+         padding: 4mm;
+      }
+
+
+      @media screen {
+        #firstpage,#lastpage,
+        .pages {
+          width: 210mm;
+          height: 297mm;
+          border: 4px double gray;
+          margin: 20px auto;
+        }
+      }
+      .box_black{
+        margin-top: -10mm;
+        margin-bottom: -10mm;
+        width: 4mm;
+        background: linear-gradient(287deg, #7695cd 0%, #bbed8f 100%);
+        color: #333333;
+        font-size: 10mm;
+        font-weight: bold;
+        padding: 4mm 8mm;
+        text-align: center;
+        margin-left: auto;
+        margin-right: -10mm;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="firstpage">
+      <img id="cover_logo" src="{{data['cover_logo']}}" />
+      <div id="report_title">Monthy Report</div>
+      <div id="report_month">{{data['month']}}</div>
+      <div id="report_year">{{data['year']}}</div>
+      <img id="cover_img" src="{{data["cover1"]}}" />
+    </div>
+
+    <div id="lastpage" class="page-break">
+        <div id="report_bottom2">For any queries mail us at support@sangeet.com</div>
+       <div id="report_last2">The World’s Destination For Music</div>
+       <div id="report_last">Sangeet</div>
+       <img id="cover_img2" src="{{data["cover2"]}}" />
+    </div>
+
+    <!-- <div id="firstpage">
+        <div id="report_bottom">Sangeet</div>
+        <div id="report_title">Monthy Report</div>
+        <div id="report_month">January</div>
+        <div id="report_year">2024</div>
+        <img id="cover_img" src="../static/images/cover1.png" />
+      </div>
+  
+      <div id="lastpage" class="page-break">
+         <div id="report_title"></div>
+         <div id="report_month">Sangeet</div>
+         <div id="report_year">A Music App</div>
+         <img id="cover_img" src="../static/images/cover2.png" />
+         <div id="report_bottom2">For any queries mail us at support@sangeet.com</div>
+      </div> -->
+
+  </body>
+</html>

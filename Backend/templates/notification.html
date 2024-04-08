@@ -1,0 +1,99 @@
+<html>
+<head>
+    <style>
+        body {
+            padding: 50px;
+        }
+
+        #sec {
+            background-color: #f1f1ff;
+            max-width: 600px;
+            height: fit-content;
+            font-family: monospace;
+            margin: auto;
+        }
+
+        .background_stuffed {
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: 110%;
+            padding: 10% 8%;
+            width: 84%;
+        }
+
+        h1 {
+            font-size: 280%;
+            text-align: center;
+            margin: 0px;
+        }
+
+        h2 {
+            width: 100%;
+            text-align: center;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin: 12px;
+        }
+        table{
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5%;
+        }
+        tr{
+            text-align: center;
+        }
+        .footer{
+            margin-left: 1rem;   
+            padding: 2rem;         
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sec">
+        <div class="background_stuffed">
+            <h1>Sangeet</h1>
+            <h2>The World’s Destination For Music</h2>
+            <h2>🎵 A Day Without Music Is like A Year Without Rain</h2>
+        </div>
+        <div class="content" style="background-color: #f8f8ff; border: 1px solid #d1d1d1; padding: 50px;">
+            <div>Dear {{user['name']}},</div>
+            <div> You haven't visited us for so long. So we thought of letting you know some of the
+                latest songs that we have added to our ever growing library.
+            </div>
+        </div>
+
+        <table>
+
+        {% for collection in latest_songs %}
+            <tr>
+                {% for song in collection %}
+                <td>
+                    <img src="{{ song['image'] }}" />
+                    <div>
+                        {{ song["name"] }}
+                    </div>
+                    <div>
+                        {{ song["creators"] }}
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+        </table>
+
+        <div class="footer">
+            <div>Admin Sangeet,</div>
+            <div>admin@sangeet.com</div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+</html>

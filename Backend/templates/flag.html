@@ -1,0 +1,76 @@
+<html>
+<head>
+    <style>
+        body{
+            padding: 50px;
+        }
+        #sec{
+            background-color: #f1f1ff;
+            max-width: 600px;
+            height: fit-content;
+            font-family: monospace;
+            margin: auto;
+        }
+
+        .background_stuffed {
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: 110%;
+            padding: 10% 8%;
+            width: 84%;
+        }
+
+        h1 {
+            font-size: 280%;
+            text-align: center;
+            margin: 0px;
+        }
+
+        h2 {
+            width: 100%;
+            text-align: center;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sec">
+        <div class="background_stuffed">
+            <h1>Sangeet</h1>
+            <h2>The World’s Destination For Music</h2>
+        </div>
+        <div class="content"  style="background-color: #f8f8ff; border: 1px solid #d1d1d1; padding: 50px;">
+            <div>Dear {{data.user_name}},</div>
+            {%if data.resolved%}
+            <div> The Flagged Song is removed from Sangeet. Thanks for letting us know</div>
+            {%else%}
+            <div>The Flagged Song do not violate community guidelines. If you still find 
+                it to be inappropriate, please let us know by replying to this email.
+            </div>
+            {%endif%}
+            <table>
+                <tr>
+                    <td></td>
+                    <td class="song_detail">
+                        <div>Song Name: {{data.song_name}}</div>
+                        <div>Song Creators: {{', '.join(data.song_creators)}}</div>
+                        <div>Flagged At: {{data.flagged_at}}</div>
+                        <div>Reason: {{data.reason}}</div>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <div>Admin Sangeet,</div>
+                <div>admin@sangeet.com</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

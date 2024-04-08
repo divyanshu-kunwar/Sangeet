@@ -1,0 +1,17 @@
+<table>
+    {% for collection in latest_songs %}
+    <tr>
+        {% for song in collection %}
+        <td>
+            <img src="{{ song['image'] }}" />
+            <div>
+                {{ song["name"] }}
+            </div>
+            <div>
+                {{ song["creators"] }}
+            </div>
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
