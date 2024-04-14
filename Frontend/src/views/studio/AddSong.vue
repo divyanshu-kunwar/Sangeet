@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 
 const songName = ref("")
-const songImg = ref("https://placehold.co/200x200/398aee/FFF?font=montserrat&text=image")
+const songImg = ref(sampleImage)
 // audio sample
 const audio = ref("")
 let audioFile = ref(null)

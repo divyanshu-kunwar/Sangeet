@@ -46,15 +46,32 @@ const navigations = [
         "Icon": flagIcon,
         "Icon_selected": flag_sIcon,
         "route": "admin_flagged"
-     },
-     {
-        "name": "Settings",
-        "Icon": settingsIcon,
-        "Icon_selected": settings_sIcon,
-        "route": "admin_settings"
      }
 ]
 
+function checkIfAdmin(){
+    if(localStorage.getItem("token") == null){
+        window.location.href = "/login"
+    }
+    fetch(`${import.meta.env.VITE_BACKEND_URL}verify`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data['valid'] == false){
+            localStorage.removeItem("token")
+            window.location.href = "/login"
+        }
+        else if(data['admin'] == false){
+            window.location.href = "/app"
+        }
+    })
+}
+checkIfAdmin()
 
 </script>
 

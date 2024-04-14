@@ -1,5 +1,4 @@
 from celery import shared_task
-from celery.contrib.abortable import AbortableTask
 from controller.c_user import getUserNotVisited
 from flask import current_app , render_template
 from utility.mailer import Mail
@@ -8,9 +7,8 @@ from controller.c_notification import addNotification
 from controller.c_analytics import updateAnalyticsAll
 import json
 
-@shared_task
-def twenty_seconds():
-    print("RUNNING EVERY 20 SECONDS!")
+from utility.model import User
+from utility.PDFGenerator import generate_report
 
 @shared_task
 def send_notification():
@@ -43,4 +41,9 @@ def collect_analytics():
 
 @shared_task
 def send_analytics():
-    print("Runs every given date of month")
+    data_users = User.query.all()
+    generate_report(6, "arijit@mail.com" )
+    for user in data_users:
+        if(user.role == 3):
+            generate_report(user.id , user.email)
+            break

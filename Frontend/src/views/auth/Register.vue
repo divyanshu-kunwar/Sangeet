@@ -76,6 +76,9 @@ import Button_ from '@/components/atomic/Button_.vue';
 
 import { ref } from 'vue';
 
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
 const nameInput = ref("")
 const emailInput = ref("")
 const passwordInput = ref("")
@@ -139,9 +142,10 @@ function otp_submit(){
     })
         .then(response => response.json())
         .then(data => {
-            form_state.value = data["success"] ? 'processing_otp' : 'otp_wrong'
+            form_state.value = data["success"] ? 'otp_sent' : 'otp_wrong'
             message.value = data["message"]
             if(data["success"]){
+                console.log(data["token"])
                 localStorage.setItem("token", data["token"])
                 router.push({ name: 'app' })
             }

@@ -33,6 +33,31 @@ const navigations = [
      }
 ]
 
+function checkIfCreator(){
+    if(localStorage.getItem("token") == null){
+        window.location.href = "/login"
+    }
+    fetch(`${import.meta.env.VITE_BACKEND_URL}verify`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data['valid'] == false){
+            localStorage.removeItem("token")
+            window.location.href = "/login"
+        }
+        else if(data['creator'] == false && data['admin'] == false){
+            window.location.href = "/app"
+        }
+    })
+}
+
+checkIfCreator()
+
 </script>
 
 <template>

@@ -91,7 +91,7 @@ document.getElementById('player').addEventListener('durationchange', () => {
 })
 document.getElementById('player').addEventListener('ended', () => {
     store.playing = true
-    store.playNext()
+    store.playNext(true)
     fetchSongDetails()
 })
 document.getElementById('player').addEventListener('timeupdate', () => {
@@ -126,6 +126,26 @@ function fetchSongDetails(){
     })
 }
 
+function checkIfLoggedIn(){
+    if(localStorage.getItem("token") == null){
+        window.location.href = "/login"
+    }
+    fetch(`${import.meta.env.VITE_BACKEND_URL}verify`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data['valid'] == false){
+            localStorage.removeItem("token")
+            window.location.href = "/login"
+        }
+    })
+}
+checkIfLoggedIn()
 </script>
 
 <template>

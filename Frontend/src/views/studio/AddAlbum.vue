@@ -1,6 +1,7 @@
 <script setup>
 import TextInput_ from '@/components/atomic/TextInput_.vue';
 import Button_ from '@/components/atomic/Button_.vue';
+import sampleImage from '@/assets/sampleImage.png';
 
 import { ref } from 'vue';
 import MultiSelect from '@/components/atomic/MultiSelect.vue';
@@ -10,7 +11,7 @@ const router = useRouter()
 
 const categoryName = ref("")
 const categoryDescription = ref("")
-const categoryImg = ref("https://placehold.co/200x200/398aee/FFF?font=montserrat&text=image")
+const categoryImg = ref(sampleImage)
 
 const songs = ref([])
 const selectedSong = ref([])

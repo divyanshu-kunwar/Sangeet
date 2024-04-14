@@ -28,7 +28,6 @@ import adminSongs from '@/views/admin/songs.vue'
 import adminUsers from '@/views/admin/users.vue'
 import adminCategories from '@/views/admin/categories.vue'
 import adminFlaggedItems from '@/views/admin/flagged.vue'
-import adminSettings from '@/views/admin/settings.vue'
 
 import AddCategory from '@/views/admin/AddCategory.vue'
 import EditCategory from '@/views/admin/EditCategory.vue'
@@ -202,11 +201,6 @@ const routes = [
         name:'admin_flagged',
         path:'flagged',
         component: adminFlaggedItems
-      },
-      {
-        name:'admin_settings',
-        path:'settings',
-        component: adminSettings
       },
       {
         name: 'AddCategory',

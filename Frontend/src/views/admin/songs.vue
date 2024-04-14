@@ -1,6 +1,7 @@
 <script setup>
 import Button_ from '@/components/atomic/Button_.vue';
 import deleteIcon from '@/assets/delete.svg'
+import sampleImage from '@/assets/sampleImage.png';
 
 import eyeIcon from '@/assets/new/eye.svg'
 import likeIcon from '@/assets/new/like.svg'
@@ -64,10 +65,10 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_songs", {
             <tr v-for="song in song_data">
                 <td>
                     <div class="song_detail">
-                        <img :src="song['image'] ? song['image'] : 'https://picsum.photos/200?random=1'"
+                        <img :src="song['image'] ? song['image'] : sampleImage"
                             class="song_image" />
                         <div class="song_info">
-                            <span>{{ song.name }}</span>
+                            <span class="name">{{ song.name }}</span>
                             <span>
                                 <span v-for="creator in song.creators">{{ creator }}</span>
                             </span>
@@ -90,10 +91,6 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_songs", {
                             {{ song.like_count }}
                         </span>
                         <img class="icons" :src="likeIcon" />
-                        <span>
-                            {{ song.dislike_count }}
-                        </span>
-                        <img class="icons" :src="dislikeIcon" />
                     </div>
                 </td>
                 <td>
@@ -222,5 +219,11 @@ select:focus {
     flex-direction: row;
     align-items: center;
     column-gap: 8px;
+}
+.name{
+    width: 200px;
+    overflow: hidden;
+    flex-wrap: nowrap;
+
 }
 </style>

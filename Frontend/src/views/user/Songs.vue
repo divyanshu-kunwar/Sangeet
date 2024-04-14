@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import CardH_ from '@/components/atomic/CardH_.vue';
 import addToPlaylist from '@/components/molecular/AddToPlaylist.vue'
+import sampleImage from '@/assets/sampleImage.png';
 
 import eyeIcon from '@/assets/new/eye.svg'
 import likeIcon from '@/assets/new/like.svg'
@@ -115,7 +116,7 @@ function flagSong() {
     <div class="main">
         <div class="form">
             <div class="row">
-                <img id="song_img" :src="songDetail.image" />
+                <img id="song_img" :src="songDetail.image ? songDetail.image : sampleImage" />
                 <div class="metadata column">
                     <div class="title">{{ songDetail.name }} </div>
                     <div class="hcontainer">

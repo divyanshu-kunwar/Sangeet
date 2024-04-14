@@ -111,7 +111,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "popularArtists?n=5", {
         <div class="horizontalList">
             <RouterLink v-for="artist in popularArtists" class="circular_card" 
               :to="'/app/artist/'+artist.id">
-                <img :src="artist.image" />
+                <img :src="artist.image ? artist.image : sampleImage" />
                 <span>{{ artist.name }}</span>
             </RouterLink>
         </div>

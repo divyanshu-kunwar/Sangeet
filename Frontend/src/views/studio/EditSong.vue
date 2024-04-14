@@ -5,9 +5,11 @@ import MultiSelect from '@/components/atomic/MultiSelect.vue';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
+import sampleImage from '@/assets/sampleImage.png';
+
 
 const songName = ref("")
-const songImg = ref("https://placehold.co/200x200/398aee/FFF?font=montserrat&text=image")
+const songImg = ref(sampleImage)
 
 
 const artists = ref([])

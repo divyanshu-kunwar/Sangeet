@@ -3,6 +3,8 @@ import hashlib
 import jwt 
 from flask import current_app , render_template
 import datetime
+from utility.cache import cache
+
 
 from utility.model import db , User , Role
 from utility.mailer import Mail
@@ -81,7 +83,6 @@ def send_verification(email: str, verification_code: int, name: str) -> dict:
     msg_string = render_template('code_verification.html', code=verification_code , name=name)
     result = mail.send(subject="Verification Code", to_email=email, 
         htmlbody=msg_string)
-    
     if(result == False):
         return {
             "success":False
@@ -94,6 +95,7 @@ def send_verification(email: str, verification_code: int, name: str) -> dict:
 def verify_otp(email: str, code: int) -> dict:
     user = User.query.filter_by(email=email).first()
     if(user.verification_code == code):
+        print("It is true ooooooooo")
         user.verification_code = None
         db.session.commit()
         return {
@@ -167,6 +169,7 @@ def create_token(email: str, days=7) -> dict:
 
     return token
 
+@cache.memoize(timeout=3600)
 def verify_token(token: str) -> dict:
     try:
         data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
@@ -213,6 +216,7 @@ def get_user_private_details(email: str) -> dict:
         "success":False
     }
 
+@cache.memoize(timeout=120)
 def get_user_public_details(userid: int) -> dict:
     user = User.query.filter_by(id=userid).first()
     if(user):
@@ -273,6 +277,7 @@ def SearchArtist(query: str) -> dict:
             "message": "Failed to search artist"
         }
 
+@cache.memoize(timeout=60)
 def getPopularArtist(totalRes : int) -> dict :
     try:
         artists = User.query.filter(User.role == 3).all()
@@ -301,6 +306,7 @@ def getPopularArtist(totalRes : int) -> dict :
             "message": "Failed to get popular artist"
         }
 
+@cache.memoize(timeout=300)
 def getArtistDetail(id : int) -> dict:
     try:
         artist = User.query.get(id)

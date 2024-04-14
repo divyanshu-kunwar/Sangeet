@@ -33,12 +33,6 @@ def get_app_celery():
 def get_cache():
     return cache
 
-# @app.route("/")
-# @cache.cached(timeout=60)
-# def appStart():
-#     print("Server is Running")
-#     return "<h1>Server is Running<h1>"
-
 @app.route('/')
 def index():
     return render_template("index.html")

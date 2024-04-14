@@ -22,8 +22,8 @@ class Config(object):
     SMTP_PORT = os.getenv('SMTP_PORT')
     SMTP_SERVER = os.getenv('SMTP_SERVER')
     CACHE_TYPE = "RedisCache"
-    CACHE_REDIS_URL = "redis://127.0.0.1"
-    CELERY_CONFIG = {"broker_url": "redis://127.0.0.1", 
+    CACHE_REDIS_URL="redis://127.0.0.1"
+    CELERY_CONFIG={"broker_url": "redis://127.0.0.1", 
                      "result_backend": "redis://127.0.0.1", 
         "beat_schedule": {
             "send_notifications" : {
@@ -33,11 +33,11 @@ class Config(object):
             },
             "collect_analytics":{
                 "task": "utility.tasks.collect_analytics",
-                "schedule": crontab( minute=0,
+                "schedule": crontab( minute=9,
                     hour = "*/6")
             },
             "send_analytics":{
                 "task": "utility.tasks.send_analytics",
-                "schedule": crontab(0,0,day_of_month='2')
+                "schedule": crontab(minute="*/1")
             }
     }}

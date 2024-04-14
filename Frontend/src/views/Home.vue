@@ -24,6 +24,23 @@ const updateCoordinates = (event) => {
 }
 window.addEventListener('mousemove', updateCoordinates);
 
+function checkIfLoggedIn(){
+    fetch(`${import.meta.env.VITE_BACKEND_URL}verify`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data['valid'] == true){
+            window.location.href = "/app"
+        }
+    })
+}
+checkIfLoggedIn()
+
 </script>
 
 <template>

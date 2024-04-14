@@ -1,6 +1,7 @@
 import datetime
 
 from utility.model import db, Song , Album, Flagged , audioData, Tag, User
+from utility.cache import cache
 
 # ================================== SONG ===============================================
 
@@ -53,6 +54,7 @@ def addSong(name: str, image:str,albums_id: list,tags_id: list, creators_id: lis
             "message": "Failed to add song",
         }
 
+@cache.memoize(timeout=60)
 def getSong(song_id : int):
     song = Song.query.filter_by(id=song_id).first()
     audio = audioData.query.filter_by(song_id=song_id).first()
@@ -177,6 +179,7 @@ def searchSong(query : str) -> dict:
             "message": "Failed to search song"
         }
 
+@cache.memoize(timeout=120)
 def getPopularSongs(totalRes : int) -> dict:
     try:
         songs = Song.query.all()
@@ -203,7 +206,8 @@ def getPopularSongs(totalRes : int) -> dict:
             "success": False,
             "message": "Failed to get popular songs"
         }
-    
+
+@cache.memoize(timeout=120)
 def getLatestSongs(totalRes : int) -> dict:
     try:
         songs = Song.query.all()

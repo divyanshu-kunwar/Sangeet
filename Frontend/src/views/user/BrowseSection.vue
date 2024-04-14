@@ -76,7 +76,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_tags")
         <h3 v-if="artists.length">Artists</h3>
         <div class="Grid1">
             <RouterLink v-for="artist in artists" class="circular_card" :to="'/app/artist/'+artist.id">
-                <img :src="artist.image" />
+                <img :src="artist.image ? artist.image : sampleImage" />
                 <span>{{ artist.name }}</span>
             </RouterLink>
         </div>
@@ -88,7 +88,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_tags")
         <div class="Grid1">
     
         <RouterLink class="card" v-for="category in categories" :to=" '/app/tags/' + category.id">
-            <img :src="category.image ? category.image : 'https://placehold.co/100x100/398aee/FFF?font=montserrat&text=' + category.name" />
+            <img :src="category.image ? category.image : sampleImage" />
             <span>{{ category.name }}</span>
         </RouterLink>
 

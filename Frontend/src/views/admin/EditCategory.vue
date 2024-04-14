@@ -1,13 +1,14 @@
 <script setup>
 import TextInput_ from '@/components/atomic/TextInput_.vue';
 import Button_ from '@/components/atomic/Button_.vue';
+import sampleImage from '@/assets/sampleImage.png';
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
 const categoryName = ref("")
-const categoryImg = ref("https://placehold.co/200x200/398aee/FFF?font=montserrat&text=image")
+const categoryImg = ref(sampleImage)
 
 const id = router.currentRoute.value.params.id
 const upload = (event) => {

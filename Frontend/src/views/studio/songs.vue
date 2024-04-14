@@ -6,7 +6,7 @@ import editIcon from '@/assets/edit.svg'
 import deleteIcon from '@/assets/delete.svg'
 import eyeIcon from '@/assets/new/eye.svg'
 import likeIcon from '@/assets/new/like.svg'
-import dislikeIcon from '@/assets/new/dislike.svg'
+import sampleImage from '@/assets/sampleImage.png';
 
 import { useRouter } from 'vue-router';
 const router = useRouter();
@@ -72,7 +72,7 @@ const deleteSong = (id) => {
             <tr v-for="song in song_data">
                 <td>
                     <div class="song_detail">
-                        <img :src="song['image'] ? song['image'] : 'https://picsum.photos/200?random=1'"
+                        <img :src="song['image'] ? song['image'] : sampleImage"
                             class="song_image" />
                         <div class="song_info">
                             <span>{{ song.name }}</span>
@@ -98,10 +98,6 @@ const deleteSong = (id) => {
                             {{ song.like_count }}
                         </span>
                         <img class="icons" :src="likeIcon" />
-                        <span>
-                            {{ song.dislike_count }}
-                        </span>
-                        <img class="icons" :src="dislikeIcon" />
                     </div>
                 </td>
                 <td>

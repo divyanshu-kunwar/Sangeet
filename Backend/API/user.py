@@ -133,13 +133,14 @@ class VerifyOTP(Resource):
         code = request.json.get('code')
         email = request.json.get('email')
         email = email.lower()
-
+        
         code_verification = verify_code(code)
         email_verification = verify_email(email)
 
         status = code_verification['success'] and email_verification['success']
 
         if(status):
+            print("It is status true")
             created_user = verify_otp(email, code )
             if(created_user['success']):
                 return {
@@ -148,6 +149,7 @@ class VerifyOTP(Resource):
                     "token" : create_token(email)
                 }
 
+        print("It is false uff")
         return {
             "success":False,
             "message": "❌ Wrong OTP \n"
@@ -383,6 +385,37 @@ class Artists(Resource):
             "message": "❌ token not found\n"
         }
 
+class VerifyToken(Resource):
+    def get(self):
+        token = request.headers.get('Authorization')
+        if(token):
+            data = verify_token(token)
+            if(data['success'] and data['role'] == 1):
+                return {
+                    "valid" : True,
+                    "admin" : True,
+                    "creator" : False
+                }
+            elif(data['success'] and data['role'] == 3):
+                return {
+                    "valid" : True,
+                    "admin" : False,
+                    "creator" : True
+                }
+            elif(data['success']):
+                return {
+                    "valid" : True,
+                    "admin" : False,
+                    "creator" : False
+                }
+            else:
+                return {
+                    "valid" : False,
+                    "admin" : False,
+                    "creator" : False
+                }
+
+api.add_resource(VerifyToken, '/api/verify')
 api.add_resource(Register, '/api/register')
 api.add_resource(VerifyOTP, '/api/verify_otp')
 api.add_resource(Login, '/api/login')

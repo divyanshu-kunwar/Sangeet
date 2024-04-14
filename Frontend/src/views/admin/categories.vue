@@ -2,6 +2,7 @@
 import Button_ from '@/components/atomic/Button_.vue';
 import editIcon from '@/assets/edit.svg'
 import deleteIcon from '@/assets/delete.svg'
+import sampleImage from '@/assets/sampleImage.png';
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -56,7 +57,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_tags")
                     <td>
                         <div class="song_detail">
                             <div class="song_info">
-                                <img :src="category.image ? category.image : 'https://picsum.photos/200?random='+category.id" class="song_image"/>
+                                <img :src="category.image ? category.image : sampleImage" class="song_image"/>
                                 <span>{{ category.name }}</span>
                             </div>
                         </div>

@@ -57,7 +57,7 @@ function changePlayState(){
             <Button_ @click="changePlayState()" 
             :icon="isPlaying ? playIcon : pauseIcon" shape="circle" type="none" size="small" />
             <Button_ :icon="nextIcon" shape="circle" type="none" size="small" 
-            @click="store.playNext()"/>
+            @click="store.playNext(false)"/>
             <Button_ :icon="next10Icon" shape="circle" type="none" size="small" 
             @click="store.seek10()"/>
         </div>

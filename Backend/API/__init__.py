@@ -7,3 +7,4 @@ from API.stream import *
 from API.flag import *
 from API.playlist import *
 from API.notification import *
+from API.analytics import *

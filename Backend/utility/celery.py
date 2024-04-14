@@ -1,7 +1,7 @@
 from celery import Celery
 
 def make_celery(app):
-    celery = Celery(app.import_name)
+    celery = Celery(app.import_name, include=["utility.tasks"])
     celery.conf.update(app.config["CELERY_CONFIG"])
 
     class ContextTask(celery.Task):

@@ -1,11 +1,6 @@
 <script setup>
-import Button_ from '@/components/atomic/Button_.vue';
-import sampleIcon from '@/assets/sIcon.svg'
 import { ref } from 'vue';
-
-import eyeIcon from '@/assets/new/eye.svg'
-import likeIcon from '@/assets/new/like.svg'
-import dislikeIcon from '@/assets/new/dislike.svg'
+import sampleImage from '@/assets/sampleImage.png';
 
 const blockUser = (id) => {
     
@@ -43,14 +38,12 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_users", {
                 <tr>
                     <th>User</th>
                     <th>Joined On</th>
-                    <th>Views</th>
-                    <th>Actions</th>
                 </tr>
 
                 <tr v-for="user in userData">
                     <td>
                         <div class="song_detail">
-                            <img :src="user['image'] ? user['image'] : 'https://picsum.photos/200?random=1'" 
+                            <img :src="user['image'] ? user['image'] : sampleImage"
                             class="song_image"/>
                             <div class="song_info">
                                 <span>{{ user["name"] }}</span>
@@ -62,21 +55,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "all_users", {
                     <td>{{ user["joined_on"] }}</td>
                     <td>
                         <td class="views">
-                    <div>
-                        <span>
-                            {{ user['total_likes'] }}
-                        </span>
-                        <img class="icons" :src="likeIcon" />
-                        <span>
-                            {{ user['total_dislikes'] }}
-                        </span>
-                        <img class="icons" :src="dislikeIcon" />
-                    </div>
                 </td>
-                    </td>
-                    <td>
-                        <Button_ label="block" type="grayscale" size="small" shape="rectangle" 
-                        @click="blockUser(user['id'])"/>
                     </td>
                 </tr>
             

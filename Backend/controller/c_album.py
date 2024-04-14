@@ -1,8 +1,10 @@
 import datetime
 from utility.model import db, Song , Album, Tag, User
+from utility.cache import cache
 
 # ============================== ALBUM =====================================================
 
+@cache.memoize(timeout=60)
 def get_album(id : int):
     album = Album.query.filter_by(id=id).first()
     return {
@@ -24,6 +26,7 @@ def get_album(id : int):
         } for song in album.songs]
     }
 
+@cache.memoize(timeout=60)
 def get_albums_by_creator(email):
     user = User.query.filter_by(email=email).first()
     albums = Album.query.filter_by(album_creator=user.id).all()
@@ -120,6 +123,7 @@ def delete_album(album_id : int, email : str):
         print("c_album->delete_album", e)
         return False
     
+
 def searchAlbums(query : str):
     try:
         albums = Album.query.filter(Album.name.ilike('%'+query+'%')).all()
@@ -139,6 +143,7 @@ def searchAlbums(query : str):
             "message": "Failed to search albums"
         }
 
+@cache.memoize(timeout=60)
 def getLatestAlbum(totalRes: int):
     try:
         albums = Album.query.order_by(Album.created_at.desc()).limit(totalRes).all()

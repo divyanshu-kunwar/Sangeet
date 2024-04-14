@@ -1,11 +1,12 @@
 <script setup>
 import TextInput_ from '@/components/atomic/TextInput_.vue';
 import Button_ from '@/components/atomic/Button_.vue';
+import sampleImage from '@/assets/sampleImage.png';
 
 import { ref } from 'vue';
 
 const profileName = ref("")
-const profileImg = ref("")
+const profileImg = ref(sampleImage)
 const id = ref("")
 
 const oldPassword = ref("")

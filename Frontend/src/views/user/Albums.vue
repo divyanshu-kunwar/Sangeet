@@ -5,6 +5,7 @@ import { store } from '@/utility/store.js'
 import Button_ from '@/components/atomic/Button_.vue';
 import PlayIcon from '@/assets/play.svg'
 import addIcon from '@/assets/add.svg'
+import sampleImage from '@/assets/sampleImage.png';
 
 import AddToPlaylist from '@/components/molecular/AddToPlaylist.vue';
 import CardH_ from '@/components/atomic/CardH_.vue';
@@ -46,7 +47,7 @@ const play = (songs) => {
     <div class="main">
         <div class="form">
             <div class="row">
-                <img id="album_img" :src="albumDetail.image" />
+                <img id="album_img" :src="albumDetail.image ? albumDetail.image : sampleImage" />
                 <div class="metadata column">
                     <div class="title" @click="play(albumDetail.songs)">
                         <Button_ :icon="PlayIcon" type="gradient" size="small" shape="circle" />

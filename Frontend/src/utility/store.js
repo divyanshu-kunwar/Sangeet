@@ -1,5 +1,6 @@
 // store.js
 import { reactive } from 'vue'
+import { stringifyQuery } from 'vue-router'
 
 export const store = reactive({
   songId: '-1',
@@ -13,6 +14,7 @@ export const store = reactive({
   queue : [],
   queueLength : 0,
   currentPlaying : -1,
+  randomize : false,
   addToQueue : (songId) => {
     let idx = store.queue.indexOf(songId)
     if(idx != -1){
@@ -58,8 +60,12 @@ export const store = reactive({
     
     store.songId = store.queue[store.currentPlaying]
   },
-  playNext : () => {
-    store.currentPlaying = store.currentPlaying + 1
+  playNext : (auto) => {
+    if(auto && store.randomize){
+      store.currentPlaying = Math.floor(Math.random() * store.queueLength)
+    }
+    else 
+      store.currentPlaying = store.currentPlaying + 1;
     if(store.currentPlaying >= store.queueLength)
       store.currentPlaying = 0
     store.songId = store.queue[store.currentPlaying]

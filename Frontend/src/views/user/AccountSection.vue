@@ -10,11 +10,12 @@ import adminIcon from '@/assets/admin.svg'
 import keyIcon from '@/assets/key.svg'
 import supportIcon from '@/assets/support.svg'
 import CircularEffect from '@/components/atomic/CircularEffect.vue'
+import sampleImage from '@/assets/sampleImage.png';
 
 // TODO : Fetch Profile & Set menu according to user_type
 const user_name = ref("Loading...")
 const user_email = ref("Loading...")
-const user_image = ref("Loading...")
+const user_image = ref(sampleImage)
 const user_type = ref("Loading...")
 
 

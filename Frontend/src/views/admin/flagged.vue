@@ -1,6 +1,7 @@
 <script setup>
 import Button_ from '@/components/atomic/Button_.vue';
 import { ref } from 'vue';
+import sampleImage from '@/assets/sampleImage.png';
 
 const flaggedItems = ref({})
 
@@ -56,7 +57,7 @@ function resolved(status, id){
             <tr v-for="item in flaggedItems">
                 <td>
                     <div class="song_detail">
-                        <img :src="item['song_image'] ? item['song_image'] : 'https://picsum.photos/200?random=1'" class="song_image" />
+                        <img :src="item['song_image'] ? item['song_image'] : sampleImage" class="song_image" />
                         <div class="song_info">
                             <span>{{ item.song_name }}</span>
                             <span>

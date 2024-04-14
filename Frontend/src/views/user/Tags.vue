@@ -28,7 +28,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "tag_detail?id=" + id, {
     <div class="main">
         <div class="form">
             <div class="row">
-                <img id="category_img" :src="tagsDetail.image" />
+                <img id="category_img" :src="tagsDetail.image? tagsDetail.image : sampleImage" />
                 <div class="metadata">
                     <div class="title">
                         {{ tagsDetail.name }}

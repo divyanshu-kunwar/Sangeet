@@ -4,6 +4,8 @@ import Button_ from '@/components/atomic/Button_.vue';
 import editIcon from '@/assets/edit.svg'
 import deleteIcon from '@/assets/delete.svg'
 import albumIcon from '@/assets/AdminNavIcon/categories.svg'
+import sampleImage from '@/assets/sampleImage.png';
+
 import eyeIcon from '@/assets/new/eye.svg'
 import likeIcon from '@/assets/new/like.svg'
 import dislikeIcon from '@/assets/new/dislike.svg'
@@ -67,7 +69,7 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "user_albums", {
                 <tr v-for="album in albums" :key="album.id">
                     <td>
                         <div class="song_detail">
-                            <img :src="album.image ? album.image : 'https://picsum.photos/200?random=1'" class="song_image"/>
+                            <img :src="album.image ? album.image : sampleImage" class="song_image"/>
                             <div class="song_info">
                                 <span>{{ album.name }}</span>
                                 <span class="small">
