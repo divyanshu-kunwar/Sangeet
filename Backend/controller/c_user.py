@@ -169,7 +169,7 @@ def create_token(email: str, days=7) -> dict:
 
     return token
 
-@cache.memoize(timeout=3600)
+@cache.memoize(timeout=1200)
 def verify_token(token: str) -> dict:
     try:
         data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
@@ -216,7 +216,7 @@ def get_user_private_details(email: str) -> dict:
         "success":False
     }
 
-@cache.memoize(timeout=120)
+@cache.memoize(timeout=30)
 def get_user_public_details(userid: int) -> dict:
     user = User.query.filter_by(id=userid).first()
     if(user):
@@ -277,7 +277,7 @@ def SearchArtist(query: str) -> dict:
             "message": "Failed to search artist"
         }
 
-@cache.memoize(timeout=60)
+@cache.memoize(timeout=30)
 def getPopularArtist(totalRes : int) -> dict :
     try:
         artists = User.query.filter(User.role == 3).all()
@@ -306,7 +306,7 @@ def getPopularArtist(totalRes : int) -> dict :
             "message": "Failed to get popular artist"
         }
 
-@cache.memoize(timeout=300)
+@cache.memoize(timeout=30)
 def getArtistDetail(id : int) -> dict:
     try:
         artist = User.query.get(id)

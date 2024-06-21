@@ -1,6 +1,6 @@
 <script setup>
 import Card_ from "@/components/atomic/Card_.vue"
-
+import sampleImage from "@/assets/sampleImage.png"
 import { ref } from 'vue';
 
 const popular = ref([])

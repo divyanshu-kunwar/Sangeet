@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 
 import Card_ from '@/components/atomic/Card_.vue';
 import CardH_ from '@/components/atomic/CardH_.vue';
+import sampleImage from "@/assets/sampleImage.png"
 
 const router = useRouter();
 

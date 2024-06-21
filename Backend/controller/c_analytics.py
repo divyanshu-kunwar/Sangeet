@@ -44,7 +44,8 @@ def updateAnalyticsAll():
             if tag.id in tags:
                 tags[tag.id]["tag_play_count"] += song.play_count
         for creator in song.creators:
-            artists[song.creators[0].id]["user_play_count"] += song.play_count
+            if creator.id in artists:
+                artists[creator.id]["user_play_count"] += song.play_count
     
     # create general analytics
     total_users = len(User.query.all())
@@ -102,7 +103,7 @@ def updateAnalyticsAll():
 
     db.session.commit()
 
-@cache.memoize(timeout=300)
+@cache.memoize(timeout=120)
 def getAnalyticsGeneralAnalytics():
     users = {
         "date" : [],
@@ -164,7 +165,7 @@ def getAnalyticsGeneralAnalytics():
         "del_albums" : del_albums
     }
 
-@cache.memoize(timeout=300)
+@cache.memoize(timeout=120)
 def getPopularAnalytics():
     # get most popular songs , albums , artists and tags
     last_date_of_analytics = GeneralAnalytics.query.order_by(
@@ -238,7 +239,7 @@ def getPopularAnalytics():
         "tags" : tags
     }
 
-@cache.memoize(timeout=300)
+@cache.memoize(timeout=120)
 def getPopularAnalyticsForUser(id : int):
     # get most popular songs , albums, artist and tags which belong to user
     user = User.query.get(id)
@@ -293,7 +294,7 @@ def getPopularAnalyticsForUser(id : int):
         "albums" : albums
     }
 
-@cache.memoize(timeout=300)
+@cache.memoize(timeout=120)
 def prepareReport(id : int):
     user = User.query.get(id)
     # get all songs, album of user

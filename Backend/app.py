@@ -10,7 +10,9 @@ from utility.celery import make_celery
 from config import Config
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__ , 
+            static_url_path='', 
+            static_folder='static',)
 CORS(app)
 
 app.config.from_object(Config)

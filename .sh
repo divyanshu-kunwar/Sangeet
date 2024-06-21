@@ -54,11 +54,9 @@ if [ "$res" == "y" ]; then
   tmux send-keys -t 0 C-m C-m C-m C-m C-m C-m
 
   tmux send-keys -t 2 '(code .)' C-m
-  tmux send-keys -t 2 'clear'
-
-  tmux select-pane -t 2
   sleep 2
-  tmux send-keys -t 2 C-m
+  tmux send-keys -t 2 'clear' C-m
+  tmux send-keys -t 2 'cd Backend && celery -A run.celery --config=config worker --loglevel=INFO -E' C-m
   
   tmux attach-session -t myapp
 else

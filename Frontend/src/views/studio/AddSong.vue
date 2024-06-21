@@ -2,6 +2,8 @@
 import TextInput_ from '@/components/atomic/TextInput_.vue';
 import Button_ from '@/components/atomic/Button_.vue';
 import MultiSelect from '@/components/atomic/MultiSelect.vue';
+import sampleImage from "@/assets/sampleImage.png"
+
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()

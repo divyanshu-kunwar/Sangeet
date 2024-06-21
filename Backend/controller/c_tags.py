@@ -1,7 +1,7 @@
 from utility.model import db , Tag , User
 from utility.cache import cache
 
-@cache.memoize(timeout=60)
+@cache.memoize(timeout=30)
 def getTag(id: int) -> dict:
     try:
         tag = Tag.query.filter_by(id=id).first()
@@ -15,7 +15,6 @@ def getTag(id: int) -> dict:
             "success":False
         }
 
-@cache.memoize(timeout=60)
 def getAllTags():
     try:
         tags = []
@@ -75,7 +74,7 @@ def updateTag(id: int , name: str , image: str) -> dict:
             "success":False
         }
 
-@cache.memoize(timeout=60)
+@cache.memoize(timeout=30)
 def getTagDetail(id: int) -> dict:
     try:
         tag = Tag.query.filter_by(id=id).first()

@@ -25,19 +25,30 @@ class Config(object):
     CACHE_REDIS_URL="redis://127.0.0.1"
     CELERY_CONFIG={"broker_url": "redis://127.0.0.1", 
                      "result_backend": "redis://127.0.0.1", 
-        "beat_schedule": {
-            "send_notifications" : {
-                "task": "utility.tasks.send_notification",
-                "schedule": crontab(minute=IST_to_UTC(1, 5).minute,
-                                    hour = IST_to_UTC(1, 5).hour) 
-            },
+    "beat_schedule": {
             "collect_analytics":{
                 "task": "utility.tasks.collect_analytics",
-                "schedule": crontab( minute=9,
-                    hour = "*/6")
+                "schedule" : crontab(minute=IST_to_UTC(5, 53).minute, hour = IST_to_UTC(5, 53).hour) 
+            },
+            "send_notifications" : {
+                "task": "utility.tasks.send_notification",
+                "schedule": crontab(minute=IST_to_UTC(16, 0).minute, hour = IST_to_UTC(16, 0).hour) 
+                # "schedule": 60
             },
             "send_analytics":{
                 "task": "utility.tasks.send_analytics",
-                "schedule": crontab(minute="*/1")
+                "schedule": crontab(0, 0, day_of_month='28')
+                # "schedule" : 60
             }
-    }}
+    }
+    
+    }
+
+
+# "schedule": crontab( minute="0", hour="*/6")
+# "schedule" : 60.0
+
+#         "beat_schedule": {
+            # 
+
+            # 

@@ -54,7 +54,7 @@ def addSong(name: str, image:str,albums_id: list,tags_id: list, creators_id: lis
             "message": "Failed to add song",
         }
 
-@cache.memoize(timeout=60)
+@cache.memoize(timeout=30)
 def getSong(song_id : int):
     song = Song.query.filter_by(id=song_id).first()
     audio = audioData.query.filter_by(song_id=song_id).first()
@@ -179,14 +179,14 @@ def searchSong(query : str) -> dict:
             "message": "Failed to search song"
         }
 
-@cache.memoize(timeout=120)
+@cache.memoize(timeout=30)
 def getPopularSongs(totalRes : int) -> dict:
     try:
         songs = Song.query.all()
         songs_sorted = []
         for song in songs:
             day_since_creation = (datetime.datetime.now() - song.created_at).days
-            ratio = (song.like_count * 1) + (song.play_count * 0.2) - (day_since_creation * 2)
+            ratio = (song.like_count * 1) + (song.play_count * 0.4) - (day_since_creation)
             songs_sorted.append((song,ratio))
         songs_sorted.sort(key=lambda x: x[1], reverse=True)
         totalRes = totalRes if totalRes <= len(songs_sorted) else len(songs_sorted)
@@ -207,7 +207,7 @@ def getPopularSongs(totalRes : int) -> dict:
             "message": "Failed to get popular songs"
         }
 
-@cache.memoize(timeout=120)
+@cache.memoize(timeout=30)
 def getLatestSongs(totalRes : int) -> dict:
     try:
         songs = Song.query.all()

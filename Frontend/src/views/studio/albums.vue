@@ -73,14 +73,14 @@ fetch(import.meta.env.VITE_BACKEND_URL +  "user_albums", {
                             <div class="song_info">
                                 <span>{{ album.name }}</span>
                                 <span class="small">
-                                    {{ album.description }}
+                                    {{ album.description.slice(0,100) }}
                                 </span>
                             </div>
                         </div>
                     </td>
                     <td>{{ album.created_at }}</td>
                     <td>
-                        <span v-for="song in album.songs">{{ song }}</span>
+                        <span v-for="song in album.songs">{{ song }}<br /></span>
                     </td>
                     <td>
                         <div class="actions">

@@ -102,7 +102,7 @@ const deleteSong = (id) => {
                 </td>
                 <td>
                     <div class="album">
-                        <RouterLink to="/admin" v-for="album in song.albums">{{ album }}</RouterLink>
+                        <span v-for="album in song.albums">{{ album }}<br/></span>
                     </div>
                 </td>
                 <td>

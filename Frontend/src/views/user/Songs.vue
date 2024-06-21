@@ -125,7 +125,7 @@ function flagSong() {
                         <div class="artists">
                             By -
                             <RouterLink v-for="artist in songDetail.artists" class="artist"
-                                :to="'/artist/' + artist.id">
+                                :to="'/app/artist/' + artist.id">
                                 {{ artist.name }}
                             </RouterLink>
                         </div>

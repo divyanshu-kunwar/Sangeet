@@ -26,7 +26,6 @@ def get_album(id : int):
         } for song in album.songs]
     }
 
-@cache.memoize(timeout=60)
 def get_albums_by_creator(email):
     user = User.query.filter_by(email=email).first()
     albums = Album.query.filter_by(album_creator=user.id).all()
@@ -143,7 +142,7 @@ def searchAlbums(query : str):
             "message": "Failed to search albums"
         }
 
-@cache.memoize(timeout=60)
+@cache.memoize(timeout=30)
 def getLatestAlbum(totalRes: int):
     try:
         albums = Album.query.order_by(Album.created_at.desc()).limit(totalRes).all()

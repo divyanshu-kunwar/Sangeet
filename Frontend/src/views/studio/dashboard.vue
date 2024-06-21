@@ -84,7 +84,7 @@ fetch(import.meta.env.VITE_BACKEND_URL + "popular_analytics?user=true", {
 </script>
 
 <template>
-    <h1>Admin Dashboard</h1>
+    <h1>Creator's Dashboard</h1>
     <div class="dashboard">
         
         <div class="popular_card">

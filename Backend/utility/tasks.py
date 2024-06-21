@@ -42,8 +42,7 @@ def collect_analytics():
 @shared_task
 def send_analytics():
     data_users = User.query.all()
-    generate_report(6, "arijit@mail.com" )
     for user in data_users:
         if(user.role == 3):
             generate_report(user.id , user.email)
-            break
+
